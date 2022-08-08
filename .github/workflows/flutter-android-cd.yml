@@ -5,8 +5,7 @@ name: CD
 # events but only for the master branch
 on:
   push:
-    tags:
-      - "v*.*.*" # on every version tag will build a new android artifact.
+
 jobs:
   build:
     name: Build APK
@@ -40,4 +39,5 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/*.aab"
+          tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}
